@@ -1,0 +1,30 @@
+{
+  "name": "liuyao-proj",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "npm run data:build",
+    "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "node --env-file-if-exists=.env server/index.js",
+    "data:build": "node scripts/generate-liuyao-data.mjs",
+    "data:validate": "node scripts/validate-liuyao-data.mjs",
+    "prebuild": "npm run data:build",
+    "build": "npm run data:validate && tsc -b && vite build",
+    "preview": "vite preview",
+    "start:server": "node --env-file-if-exists=.env server/index.js"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
+  }
+}
